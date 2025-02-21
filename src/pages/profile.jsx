@@ -1,5 +1,6 @@
 import Navbar from "../components/Navigation";
 import React from "react";
+import { Share2 } from "lucide-react";
 
 const Profile = () => {
     const shareProfile = () => {
@@ -36,9 +37,9 @@ const Profile = () => {
            {/* Share Button */}
            <button
             onClick={shareProfile}
-            className="mt-3 px-4 py-2 bg-white text-blue-600 font-semibold rounded-lg shadow-md hover:bg-gray-200 transition"
+            className="mt-3 flex items-center px-4 py-2 bg-white text-blue-600 font-semibold rounded-lg shadow-md hover:bg-gray-200 transition"
           >
-            Share Profile
+            <Share2 className="w-5 h-5 mr-2" /> Share Profile
           </button>
           <div className="flex space-x-3 justify-center md:justify-start mt-2">
             <i className="fab fa-twitter text-xl"></i>
