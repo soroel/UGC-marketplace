@@ -10,10 +10,9 @@ export default function Jobs() {
   return (
     <div className="bg-gray-50 min-h-screen p-8">
       {/* Header */}
-      <header className="flex justify-between items-center py-4 px-8 bg-white shadow-md rounded-xl">
-        <h1 className="text-2xl font-bold text-blue-600">UGC Connect Kenya</h1>
-       <Navbar />
-      </header>
+      <div className="fixed top-0 left-0 w-full bg-blue-700 shadow-md z-50">
+              <Navbar />
+            </div>
 
       {/* Hero Section */}
       <section className="text-center my-12">
