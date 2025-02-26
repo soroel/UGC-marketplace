@@ -12,13 +12,22 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
+import environ
+
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Media files (user-uploaded files)
+<<<<<<< HEAD
 MEDIA_URL = '/media/'  # URL prefix for media files
 MEDIA_ROOT = os.path.join(BASE_DIR, 'Media')  # Path to the media directory on the filesystem
+=======
+MEDIA_URL = "/media/"  # URL prefix for media files
+MEDIA_ROOT = BASE_DIR / "Media"  # Path to the media directory on the filesystem
+>>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
@@ -28,8 +37,7 @@ SECRET_KEY = "django-insecure-khkyr6=e0lv^&8c1ri6dvtr4x#8j80#@nnp4yc(6w&pk#+r%b3
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", "172.21.32.1"]
 
 
 # Application definition
@@ -42,10 +50,15 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "backend",
+<<<<<<< HEAD
     'corsheaders',
+=======
+    "corsheaders",
+>>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
 ]
 
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
@@ -55,6 +68,29 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
+]
+
+
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://172.21.32.1:3000",
+]
+CORS_ALLOW_ALL_ORIGINS = False
+
+CORS_ALLOW_CREDENTIALS = True
+# Allow all origins (for development)
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:3000",
+    "http://127.0.0.1:3000",
+    "http://172.21.32.1:3000",  # ✅ Add your frontend IP
+]
+CORS_ALLOW_METHODS = ["GET", "POST", "OPTIONS"]
+CORS_ALLOW_HEADERS = [
+    "content-type",  # ✅ Explicitly allow Content-Type header
+    "authorization",
+    "x-csrftoken",
+    "x-requested-with",
 ]
 
 ROOT_URLCONF = "UGCBackend.urls"
@@ -132,4 +168,13 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "Frontend/build/static")]
 
+<<<<<<< HEAD
 CORS_ORIGIN_ALLOW_ALL = True
+=======
+AT_USERNAME = "AFRICASTALKING_USERNAME"
+AT_API_KEY = "AFRICASTALKING_API_KEY"
+AT_SENDER_ID = "AFRICASTALKING_SENDER_ID"
+CSRF_COOKIE_SECURE = False  # ✅ Required for local development (use True in production)
+CSRF_COOKIE_HTTPONLY = False  # ✅ Ensure JS can access the cookie
+CSRF_COOKIE_SAMESITE = None
+>>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35

@@ -7,6 +7,7 @@ import Navbar from "../components/Navigation";
 export default function Jobs() {
   const [search, setSearch] = useState("");
   const [showPopup, setShowPopup] = useState(false);
+<<<<<<< HEAD
 
   // Sample data for jobs and brands
   const [jobs] = useState([
@@ -30,9 +31,13 @@ export default function Jobs() {
   const filteredBrands = brands.filter((brand) =>
     brand.name.toLowerCase().includes(search.toLowerCase())
   );
+=======
+>>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
 
   useEffect(() => {
-    setShowPopup(true); // Always show popup on reload
+    if (!localStorage.getItem("hasSeenPopup")) {
+      setShowPopup(true);
+    }
   }, []);
 
   return (
@@ -93,6 +98,12 @@ export default function Jobs() {
           ))}
         </div>
       </section>
+<<<<<<< HEAD
+=======
+
+      {/* SMS Popup Component */}
+      <SMSPopup showPopup={showPopup} setShowPopup={setShowPopup} />
+>>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
     </div>
   );
 }

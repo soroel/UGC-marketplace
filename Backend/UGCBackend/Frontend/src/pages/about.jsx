@@ -13,7 +13,18 @@ export default function About() {
           <p className="text-white mt-4 max-w-2xl mx-auto">
             At UGC Connect, we are passionate about empowering individuals and businesses to achieve their goals through innovative solutions and a collaborative approach.
           </p>
+<<<<<<< HEAD
         </div>
+=======
+          {/* Image Row */}
+          <div className="flex justify-center gap-4 mt-6">
+            <img src="Blog.jpg" className="w-24 h-24 rounded-lg object-cover" alt="Team" />
+            <img src="Blog.jpg" className="w-24 h-24 rounded-lg object-cover" alt="Meeting" />
+            <img src="Blog.jpg" className="w-24 h-24 rounded-lg object-cover" alt="Discussion" />
+            <img src="Blog.jpg" className="w-24 h-24 rounded-lg object-cover" alt="Remote Work" />
+          </div>
+        </section>
+>>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
 
       {/* Image Row */}
       <div className="flex justify-center gap-8 absolute -bottom-12 left-1/2 transform -translate-x-1/2">
@@ -33,8 +44,13 @@ export default function About() {
                 Our team is dedicated to turning your vision into reality. From concept to execution, we ensure every detail is handled with care and precision.
               </p>
             </div>
+<<<<<<< HEAD
             <div className="">
               <img src="/media/soil.jpg" className="w-full rounded-lg shadow-md" alt="Business Impact" />
+=======
+            <div>
+              <img src="Blog.jpg" className="w-full rounded-lg shadow-md" alt="Business Impact" />
+>>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
             </div>
           </div>
         </section>
@@ -43,7 +59,11 @@ export default function About() {
         <section className="bg-gray-50 py-16 px-6">
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div>
+<<<<<<< HEAD
               <img src="/media/coins.jpg" className="w-full rounded-lg shadow-md" alt="Founder" />
+=======
+              <img src="Blog.jpg" className="w-full rounded-lg shadow-md" alt="Founder" />
+>>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
               <p className="text-gray-700 italic mt-2">"Together, we can create a lasting impact." - Socialy Founder</p>
             </div>
             <div>
