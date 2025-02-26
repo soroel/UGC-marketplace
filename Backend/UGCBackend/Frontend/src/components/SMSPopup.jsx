@@ -1,37 +1,55 @@
 import { useState } from "react";
-import { Button } from "./ui/button";
+import axios from "axios";
 
-export default function SMSPopup({ showPopup, setShowPopup, setPhoneNumber }) {
-  const [phone, setPhone] = useState("");
+const SMSPopup = () => {
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [message, setMessage] = useState("");
+  const [response, setResponse] = useState(null);
+  const [error, setError] = useState(null);
 
-  const handleSubmit = () => {
-    setPhoneNumber(phone);
-    localStorage.setItem("hasSeenPopup", "true");
-    setShowPopup(false);
-    console.log("Phone Number Submitted: ", phone);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setError(null);
+    setResponse(null);
+
+    try {
+      const res = await axios.post("http://127.0.0.1:8000/api/send_sms/", {
+        phone_number: phoneNumber,
+        message: message,
+      });
+      setResponse(res.data);
+    } catch (err) {
+      setError(err.response?.data?.error || "Something went wrong");
+    }
   };
 
-  if (!showPopup) return null; // Hide popup if showPopup is false
-
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 z-50">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-96 text-center">
-        <h2 className="text-xl font-bold mb-4">Get Job Updates via SMS</h2>
-        <p className="text-gray-600 mb-4">Enter your phone number to receive job alerts.</p>
-        <input
-          type="tel"
-          placeholder="Enter phone number"
-          className="w-full p-2 border rounded-md mb-4"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-        />
-        <div className="flex justify-between">
-          <Button onClick={() => setShowPopup(false)} variant="outline">
-            Cancel
-          </Button>
-          <Button onClick={handleSubmit}>Okay</Button>
+    <div>
+      <h2>Send SMS</h2>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>Phone Number:</label>
+          <input
+            type="text"
+            value={phoneNumber}
+            onChange={(e) => setPhoneNumber(e.target.value)}
+            required
+          />
         </div>
-      </div>
+        <div>
+          <label>Message:</label>
+          <textarea
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
+            required
+          />
+        </div>
+        <button type="submit">Send</button>
+      </form>
+      {response && <p>Response: {JSON.stringify(response)}</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
     </div>
   );
-}
+};
+
+export default SMSPopup;

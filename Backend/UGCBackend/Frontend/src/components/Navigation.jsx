@@ -11,7 +11,7 @@ export default function Navbar() {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <Link to="/" className="text-2xl font-bold">
-            MyLogo
+            UGC Connect
           </Link>
 
           {/* Desktop Menu */}
@@ -19,6 +19,7 @@ export default function Navbar() {
             <Link to="/" className="hover:text-gray-300">Home</Link>
             <Link to="/about" className="hover:text-gray-300">About</Link>
             <Link to="/jobs" className="hover:text-gray-300">Job Listings</Link>
+            <Link to="/brands" className="hover:text-gray-300">Find a marketing Agency</Link>
             <Link to="/profile" className="hover:text-gray-300">Profile</Link>
           </div>
 
@@ -34,11 +35,14 @@ export default function Navbar() {
 
       {/* Mobile Menu (Dropdown) */}
       {isOpen && (
-        <div className="md:hidden bg-blue-700 space-y-2 p-4">
-          <Link to="/" className="hover:text-gray-300">Home</Link>
+        <div className="md:hidden bg-blue-700 p-4">
+          <div className="flex flex-col space-y-4"> {/* Added flex-col and space-y-4 */}
+            <Link to="/" className="hover:text-gray-300">Home</Link>
             <Link to="/about" className="hover:text-gray-300">About</Link>
             <Link to="/jobs" className="hover:text-gray-300">Job Listings</Link>
+            <Link to="/brands" className="hover:text-gray-300">Find a marketing Agency</Link>
             <Link to="/profile" className="hover:text-gray-300">Profile</Link>
+          </div>
         </div>
       )}
     </nav>
