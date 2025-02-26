@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 from django.shortcuts import render
 import africastalking
 from django.http import JsonResponse
@@ -38,6 +39,15 @@ from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
 import logging
 
+=======
+import json
+import africastalking
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
+import logging
+
+>>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
 logger = logging.getLogger(__name__)
 
 sms = africastalking.SMS
@@ -68,4 +78,7 @@ def send_sms(request):
             return JsonResponse({"error": str(e)}, status=500)
 
     return JsonResponse({"error": "Invalid request method"}, status=405)
+<<<<<<< HEAD
+>>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
+=======
 >>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35

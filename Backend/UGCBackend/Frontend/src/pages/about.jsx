@@ -50,6 +50,9 @@ export default function About() {
 =======
             <div>
               <img src="Blog.jpg" className="w-full rounded-lg shadow-md" alt="Business Impact" />
+<<<<<<< HEAD
+>>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
+=======
 >>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
             </div>
           </div>
@@ -60,7 +63,11 @@ export default function About() {
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div>
 <<<<<<< HEAD
+<<<<<<< HEAD
               <img src="/media/coins.jpg" className="w-full rounded-lg shadow-md" alt="Founder" />
+=======
+              <img src="Blog.jpg" className="w-full rounded-lg shadow-md" alt="Founder" />
+>>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
 =======
               <img src="Blog.jpg" className="w-full rounded-lg shadow-md" alt="Founder" />
 >>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35

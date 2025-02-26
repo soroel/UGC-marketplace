@@ -1,5 +1,6 @@
 import { useState } from "react";
 <<<<<<< HEAD
+<<<<<<< HEAD
 import axios from "axios";
 
 const SMSPopup = () => {
@@ -81,6 +82,52 @@ export default function SMSPopup({ showPopup, setShowPopup }) {
     }
   };
 
+=======
+
+export default function SMSPopup({ showPopup, setShowPopup }) {
+  const [phone, setPhone] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+
+  const handleSubmit = async () => {
+    const trimmedPhone = phone.trim();
+    if (!trimmedPhone) {
+      setError("Phone number is required");
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+    setSuccess("");
+
+    try {
+      const response = await fetch("http://127.0.0.1:8000/api/sms/send-sms/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({ phone: trimmedPhone }),
+      });
+
+      const data = await response.json();
+
+      if (response.ok) {
+        setSuccess("SMS sent successfully!");
+        setPhone(""); // Clear input field
+        setTimeout(() => setShowPopup(false), 2000);
+      } else {
+        setError(data.error || "Failed to send SMS. Please try again.");
+      }
+    } catch (error) {
+      setError("Something went wrong! Check your internet connection.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+>>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
   if (!showPopup) return null;
 
   return (
@@ -105,6 +152,9 @@ export default function SMSPopup({ showPopup, setShowPopup }) {
           <button onClick={handleSubmit} disabled={loading} className="px-4 py-2 bg-blue-500 text-white rounded">
             {loading ? "Sending..." : "Okay"}
           </button>
+<<<<<<< HEAD
+>>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
+=======
 >>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
         </div>
         <div>

@@ -8,6 +8,7 @@ export default function Jobs() {
   const [search, setSearch] = useState("");
   const [showPopup, setShowPopup] = useState(false);
 <<<<<<< HEAD
+<<<<<<< HEAD
 
   // Sample data for jobs and brands
   const [jobs] = useState([
@@ -31,6 +32,8 @@ export default function Jobs() {
   const filteredBrands = brands.filter((brand) =>
     brand.name.toLowerCase().includes(search.toLowerCase())
   );
+=======
+>>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
 =======
 >>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
 
@@ -103,6 +106,9 @@ export default function Jobs() {
 
       {/* SMS Popup Component */}
       <SMSPopup showPopup={showPopup} setShowPopup={setShowPopup} />
+<<<<<<< HEAD
+>>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
+=======
 >>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
     </div>
   );
