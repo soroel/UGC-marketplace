@@ -13,10 +13,10 @@ export default function About() {
           </p>
           {/* Image Row */}
           <div className="flex justify-center gap-4 mt-6">
-            <img src="/Media/Blog.jpg" className="w-24 h-24 rounded-lg object-cover" alt="Team" />
-            <img src="/Media/Blog.jpg" className="w-24 h-24 rounded-lg object-cover" alt="Meeting" />
-            <img src="/Media/Blog.jpg" className="w-24 h-24 rounded-lg object-cover" alt="Discussion" />
-            <img src="/Media/Blog.jpg" className="w-24 h-24 rounded-lg object-cover" alt="Remote Work" />
+            <img src="Blog.jpg" className="w-24 h-24 rounded-lg object-cover" alt="Team" />
+            <img src="Blog.jpg" className="w-24 h-24 rounded-lg object-cover" alt="Meeting" />
+            <img src="Blog.jpg" className="w-24 h-24 rounded-lg object-cover" alt="Discussion" />
+            <img src="Blog.jpg" className="w-24 h-24 rounded-lg object-cover" alt="Remote Work" />
           </div>
         </section>
 
@@ -30,7 +30,7 @@ export default function About() {
               </p>
             </div>
             <div>
-              <img src="/Media/Blog.jpg" className="w-full rounded-lg shadow-md" alt="Business Impact" />
+              <img src="Blog.jpg" className="w-full rounded-lg shadow-md" alt="Business Impact" />
             </div>
           </div>
         </section>
@@ -39,7 +39,7 @@ export default function About() {
         <section className="bg-gray-50 py-16 px-6">
           <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
             <div>
-              <img src="/Media/Blog.jpg" className="w-full rounded-lg shadow-md" alt="Founder" />
+              <img src="Blog.jpg" className="w-full rounded-lg shadow-md" alt="Founder" />
               <p className="text-gray-700 italic mt-2">"Together, we can create a lasting impact." - Socialy Founder</p>
             </div>
             <div>

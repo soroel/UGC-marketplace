@@ -8,10 +8,11 @@ import SMSPopup from "../components/SMSPopup"; // Import the popup
 export default function Jobs() {
   const [search, setSearch] = useState("");
   const [showPopup, setShowPopup] = useState(false);
-  const [phoneNumber, setPhoneNumber] = useState("");
 
   useEffect(() => {
-    setShowPopup(true); // Always show popup on reload
+    if (!localStorage.getItem("hasSeenPopup")) {
+      setShowPopup(true);
+    }
   }, []);
 
   return (
@@ -74,7 +75,7 @@ export default function Jobs() {
       </section>
 
       {/* SMS Popup Component */}
-      <SMSPopup showPopup={showPopup} setShowPopup={setShowPopup} setPhoneNumber={setPhoneNumber} />
+      <SMSPopup showPopup={showPopup} setShowPopup={setShowPopup} />
     </div>
   );
 }
