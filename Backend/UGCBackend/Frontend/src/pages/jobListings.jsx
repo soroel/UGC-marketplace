@@ -3,12 +3,11 @@ import { Card, CardContent } from "../components/ui/card";
 import { Button } from "../components/ui/button";
 import { Search, Briefcase } from "lucide-react";
 import Navbar from "../components/Navigation";
+import SMSPopup from "../components/SMSPopup";
 
 export default function Jobs() {
   const [search, setSearch] = useState("");
   const [showPopup, setShowPopup] = useState(false);
-<<<<<<< HEAD
-<<<<<<< HEAD
 
   // Sample data for jobs and brands
   const [jobs] = useState([
@@ -32,10 +31,6 @@ export default function Jobs() {
   const filteredBrands = brands.filter((brand) =>
     brand.name.toLowerCase().includes(search.toLowerCase())
   );
-=======
->>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
-=======
->>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
 
   useEffect(() => {
     if (!localStorage.getItem("hasSeenPopup")) {
@@ -101,15 +96,9 @@ export default function Jobs() {
           ))}
         </div>
       </section>
-<<<<<<< HEAD
-=======
 
       {/* SMS Popup Component */}
       <SMSPopup showPopup={showPopup} setShowPopup={setShowPopup} />
-<<<<<<< HEAD
->>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
-=======
->>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
     </div>
   );
 }
