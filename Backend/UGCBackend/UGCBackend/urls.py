@@ -7,6 +7,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path("admin/", admin.site.urls),
     path("", TemplateView.as_view(template_name="index.html"), name="home"),
+    path('api/', include('backend.urls')),
     path("<path:resource>", TemplateView.as_view(template_name="index.html")),
     # Replace 'yourapp' with your Django app name
 ]

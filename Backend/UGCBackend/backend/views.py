@@ -1,84 +1,52 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
-from django.shortcuts import render
-import africastalking
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
-import json
-
-# Initialize Africa's Talking API
-username = "your_username"  # Use 'sandbox' for testing
-api_key = "your_api_key"
-
-africastalking.initialize(username, api_key)
-sms = africastalking.SMS
-
-@csrf_exempt
-def send_sms(request):
-    if request.method == 'POST':
-        try:
-            data = json.loads(request.body)
-            phone_number = data.get("phone_number")
-            message = data.get("message")
-
-            if not phone_number or not message:
-                return JsonResponse({"error": "Phone number and message required"}, status=400)
-
-            # Send SMS
-            response = sms.send(message, [phone_number])
-            return JsonResponse({"message": "SMS sent successfully", "response": response})
-        except Exception as e:
-            return JsonResponse({"error": str(e)}, status=500)
-    
-    return JsonResponse({"error": "Invalid request"}, status=400)
-=======
-import json
 import africastalking
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
-from django.conf import settings
+import json
 import logging
-
-=======
-import json
-import africastalking
-from django.http import JsonResponse
-from django.views.decorators.csrf import csrf_exempt
 from django.conf import settings
-import logging
 
->>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
+# Set up logging
 logger = logging.getLogger(__name__)
 
+# Initialize Africa's Talking API
+africastalking.initialize(settings.AFRICASTALKING_USERNAME, settings.AFRICASTALKING_API_KEY)
 sms = africastalking.SMS
-
 
 @csrf_exempt
 def send_sms(request):
-    logger.info(f"Incoming request method: {request.method}")
-    logger.info(f"Request headers: {request.headers}")
-
-    if request.method == "POST":
+   
+    if request.method == 'POST':
         try:
+            # Parse JSON data from request body
             data = json.loads(request.body)
             phone_number = data.get("phone")
-            logger.info(f"Received phone number: {phone_number}")
+            message = data.get("message", """Thank you for subscribing to UGC Connect job alerts!
+            You'll now receive updates on the latest job opportunities straight to your phone. 
+            Stay tuned for exciting career possibilities, and if you ever need to opt out, 
+            simply reply "STOP" to unsubscribe. Welcome aboard!""")
 
+            # Validate input
             if not phone_number:
+                logger.warning("Phone number is missing in the request.")
                 return JsonResponse({"error": "Phone number is required"}, status=400)
+            
+            if not message:
+                logger.warning("Message is missing in the request.")
+                return JsonResponse({"error": "Message is required"}, status=400)
 
-            message = "Thank you for subscribing to job alerts!"
-            response = sms.send(message, [phone_number], settings.AT_SENDER_ID)
+            # Send SMS via Africa's Talking API
+            response = sms.send(message, [phone_number])
+            logger.info(f"SMS sent successfully to {phone_number}")
+            return JsonResponse({"message": "SMS sent successfully", "response": response})
 
-            logger.info(f"SMS API Response: {response}")
-            return JsonResponse(response, status=200)
+        except json.JSONDecodeError:
+            logger.error("Invalid JSON in request body.")
+            return JsonResponse({"error": "Invalid JSON format"}, status=400)
 
         except Exception as e:
             logger.error(f"Error sending SMS: {str(e)}")
             return JsonResponse({"error": str(e)}, status=500)
 
-    return JsonResponse({"error": "Invalid request method"}, status=405)
-<<<<<<< HEAD
->>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
-=======
->>>>>>> fa3cd0cd77533018a69cdae829c33b506c65fb35
+    # Handle non-POST requests
+    logger.warning("Invalid request method. Only POST is allowed.")
+    return JsonResponse({"error": "Invalid request method. Use POST."}, status=400)

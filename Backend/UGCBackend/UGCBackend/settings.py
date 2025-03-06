@@ -12,10 +12,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 
 from pathlib import Path
 import os
-import environ
-
-env = environ.Env()
-environ.Env.read_env()
+from dotenv import load_dotenv
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -28,7 +26,7 @@ MEDIA_ROOT = BASE_DIR / "Media"  # Path to the media directory on the filesystem
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-khkyr6=e0lv^&8c1ri6dvtr4x#8j80#@nnp4yc(6w&pk#+r%b3"
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -109,9 +107,42 @@ WSGI_APPLICATION = "UGCBackend.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": os.getenv("DB_NAME"),
+        "USER": os.getenv("DB_USER"),
+        "PASSWORD": os.getenv("DB_PASSWORD"),
+        "HOST": os.getenv("DB_HOST"),
+        "PORT": os.getenv("DB_PORT"),
     }
 }
+
+# logging
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'formatters': {
+        'verbose': {
+            'format': '{levelname} {asctime}  {process:d}  {message}',
+            'style': '{',
+        },
+    },
+    'handlers': {
+        'newfile': {
+            'level': 'DEBUG',
+            'class': 'logging.FileHandler',
+            'filename': os.path.join(BASE_DIR, 'debug.log'),
+            'formatter': 'verbose'
+        },
+    },
+    'loggers': {
+        '': {
+            'level': 'DEBUG',
+            'handlers': ['newfile'],
+            'propagate': True,
+        },
+    },
+}
+
+
 
 
 # Password validation
@@ -157,9 +188,13 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 STATICFILES_DIRS = [os.path.join(BASE_DIR, "Frontend/build/static")]
 
-AT_USERNAME = "AFRICASTALKING_USERNAME"
-AT_API_KEY = "AFRICASTALKING_API_KEY"
-AT_SENDER_ID = "AFRICASTALKING_SENDER_ID"
+# Africa's Talking SMS API
+AFRICASTALKING_USERNAME = os.getenv("AFRICASTALKING_USERNAME")
+AFRICASTALKING_API_KEY = os.getenv("AFRICASTALKING_API_KEY")
+AFRICASTALKING_SENDER_ID = os.getenv("AFRICASTALKING_SENDER_ID")
+
+
+
 CSRF_COOKIE_SECURE = False  # ✅ Required for local development (use True in production)
 CSRF_COOKIE_HTTPONLY = False  # ✅ Ensure JS can access the cookie
 CSRF_COOKIE_SAMESITE = None

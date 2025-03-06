@@ -52,7 +52,7 @@ export default function SMSPopup({ showPopup, setShowPopup }) {
         <p className="text-gray-600 mb-4">Enter your phone number to receive job alerts.</p>
         <input
           type="tel"
-          placeholder="Enter phone number"
+          placeholder="Enter phone number (e.g. +254xxxxxxxx)"
           className="w-full p-2 border rounded-md mb-4 focus:outline-none focus:ring-2 focus:ring-blue-500"
           value={phone}
           onChange={(e) => setPhone(e.target.value)}

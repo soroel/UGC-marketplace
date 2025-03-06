@@ -1,2 +1,12 @@
 node_modules
 myvirtualenv
+.vscode
+.idea
+venv
+*.pyc
+*.env
+*.log
+*.sqlite3
+
+
+
