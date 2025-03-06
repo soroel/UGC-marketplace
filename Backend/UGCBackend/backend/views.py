@@ -30,13 +30,11 @@ def send_sms(request):
                 logger.warning("Phone number is missing in the request.")
                 return JsonResponse({"error": "Phone number is required"}, status=400)
             
-            if not message:
-                logger.warning("Message is missing in the request.")
-                return JsonResponse({"error": "Message is required"}, status=400)
+            
 
             # Send SMS via Africa's Talking API
             response = sms.send(message, [phone_number])
-            logger.info(f"SMS sent successfully to {phone_number}")
+            logger.info(f"SMS sent successfully to {phone_number}{message}")
             return JsonResponse({"message": "SMS sent successfully", "response": response})
 
         except json.JSONDecodeError:
