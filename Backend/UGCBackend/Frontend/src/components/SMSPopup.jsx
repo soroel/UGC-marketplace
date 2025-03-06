@@ -18,7 +18,7 @@ export default function SMSPopup({ showPopup, setShowPopup }) {
     setSuccess("");
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/api/sms/send-sms/", {
+      const response = await fetch("http://127.0.0.1:8000/api/send-sms/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

@@ -5,7 +5,7 @@ from django.views.decorators.csrf import csrf_exempt
 
 
 urlpatterns = [
-    path('sms/send-sms/', csrf_exempt(send_sms), name='send_sms'),
+    path('send-sms/', send_sms, name='send_sms'),
    
    
 ]
